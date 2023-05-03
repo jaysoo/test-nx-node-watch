@@ -4,18 +4,30 @@
   "sourceRoot": "src",
   "projectType": "application",
   "targets": {
+    "pre-build": {
+      "command": "sleep 10"
+    },
     "build": {
+      "dependsOn": [
+        "pre-build"
+      ],
       "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
         "outputPath": "dist/nx-node",
-        "format": ["cjs"],
+        "format": [
+          "cjs"
+        ],
         "bundle": false,
         "main": "src/main.ts",
         "tsConfig": "tsconfig.app.json",
-        "assets": ["src/assets"],
+        "assets": [
+          "src/assets"
+        ],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -53,14 +65,20 @@
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["./src/**/*.ts"]
+        "lintFilePatterns": [
+          "./src/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectName}"
+      ],
       "options": {
         "jestConfig": "jest.config.ts",
         "passWithNoTests": true
