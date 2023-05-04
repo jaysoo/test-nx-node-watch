@@ -1,17 +1,15 @@
 import * as fs from 'node:fs';
 
-const n = 10;
+const n = 100;
 const t = 1000;
 const original = fs.readFileSync(`./src/main.ts`);
 
-// process.on('exit', reset);
+process.on('exit', reset);
 
 for (let i = 0; i < n; i++) {
   update(i);
   await delay(t);
 }
-
-//reset();
 
 function reset() {
   fs.writeFileSync('./src/main.ts', original);
